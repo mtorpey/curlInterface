@@ -15,6 +15,8 @@ AC_CONFIG_HEADER([src/pkgconfig.h:cnf/pkgconfig.h.in])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([cnf])
 m4_include([m4/ac_find_gap.m4])
+m4_include([m4/libcurl.m4])
+
 
 dnl ##
 dnl ## Get canonical host info
@@ -63,6 +65,31 @@ if test "$CYGWIN" = "yes"; then
 else
   AC_DEFINE(SYS_IS_CYGWIN32, 0, are we on CYGWIN?)
 fi
+
+dnl ##
+dnl ## Check for libcurl
+dnl ##
+LIBCURL_CHECK_CONFIG([yes],[],[],[AC_MSG_ERROR([libcurl development files required])])
+
+ AC_PATH_PROG(CURL_CONFIG, curl-config, no)
+    if test "$CURL_CONFIG" = "no" ; then
+        AC_MSG_ERROR([*** The curl-config script installed by curl could not be found])
+    else
+    echo "curl found - remote install options available"
+    CURL_AM_CFLAGS=`$CURL_CONFIG --cflags`
+    CURL_LIBS=`$CURL_CONFIG --libs`
+    AM_CXXFLAGS="$AM_CXXFLAGS $CURL_AM_CFLAGS"
+    AM_CFLAGS="$AM_CFLAGS $CURL_AM_CFLAGS"
+    LIBS="$LIBS $CURL_LIBS"
+    if test x$with_curl_sftp = xyes; then
+        if test x`$CURL_CONFIG --protocols|grep SFTP|wc -l` = x1; then
+            AM_CXXFLAGS="$AM_CXXFLAGS -DCURLSFTPAVAILABLE"
+            AM_CFLAGS="$AM_CFLAGS -DCURLSFTPAVAILABLE"
+        else
+            with_curl_sftp=no;
+        fi
+	fi
+    fi
 
 dnl ##
 dnl ## Rebuild configure if VERSION file changes
