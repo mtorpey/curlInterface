@@ -1,1 +1,41 @@
-Placeholder
+  
+  
+                                     [1X curl [101X
+  
+  
+                              [1X Simple Web Access [101X
+  
+  
+                                      0.1
+  
+  
+                                 31 August 2017
+  
+  
+                             Christopher Jefferson
+  
+  
+  
+  Christopher Jefferson
+      Email:    [7Xmailto:caj21@st-andrews.ac.uk[107X
+      Homepage: [7Xhttp://caj.host.cs.st-andrews.ac.uk/[107X
+      Address:  [33X[0;14YSchool of Computer Science[133X
+                [33X[0;14YUniversity of St Andrews[133X
+                [33X[0;14YJack Cole Building, North Haugh[133X
+                [33X[0;14YSt Andrews, Fife, KY16 9SX[133X
+                [33X[0;14YUnited Kingdom[133X
+  
+  
+  
+  -------------------------------------------------------
+  
+  
+  [1XContents (curl)[101X
+  
+  1 [33X[0;0Ycurl automatic generated documentation[133X
+    1.1 [33X[0;0Ycurl automatic generated documentation of global functions[133X
+      1.1-1 DownloadURL
+      1.1-2 URLVerification
+  
+  
+  [32X

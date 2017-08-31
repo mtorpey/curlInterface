@@ -1,0 +1,26 @@
+  
+  [1X1 [33X[0;0Ycurl automatic generated documentation[133X[101X
+  
+  
+  [1X1.1 [33X[0;0Ycurl automatic generated documentation of global functions[133X[101X
+  
+  [1X1.1-1 DownloadURL[101X
+  
+  [29X[2XDownloadURL[102X( [[3XURL[103X] ) [32X function
+  [6XReturns:[106X  [33X[0;10YA  record  describing  the result. This record will always contain
+            the option 'success', which will be [9Xtrue[109X or [9Xfalse[109X. If 'success' is
+            [9Xtrue[109X, then 'result' will contain the downloaded file. If 'success'
+            is  [9Xfalse[109X,  then  'error'  will  contain  a  human-readable string
+            describing the error.[133X
+  
+  [33X[0;0YDownload  a  URL from the internet. Accepts a web address as a string, which
+  can start with either of http:// or https://[133X
+  
+  [1X1.1-2 URLVerification[101X
+  
+  [29X[2XURLVerification[102X( [[3XBool[103X] ) [32X function
+  
+  [33X[0;0YControl  https  verification. Disabling checking (by passing [9Xfalse[109X) disables
+  checking  of https addresses. This reduces security, but can be required for
+  badly configured servers or clients.[133X
+  
