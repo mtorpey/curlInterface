@@ -1,0 +1,12 @@
+#
+# curl: Simple Web Access
+#
+# This file runs package tests. It is also referenced in the package
+# metadata in PackageInfo.g.
+#
+LoadPackage( "curl" );
+
+TestDirectory(DirectoriesPackageLibrary( "curl", "tst" ),
+  rec(exitGAP := true));
+
+FORCE_QUIT_GAP(1); # if we ever get here, there was an error
