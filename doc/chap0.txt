@@ -1,6 +1,6 @@
   
   
-                                     [1X curl [101X
+                                [1X curlInterface [101X
   
   
                               [1X Simple Web Access [101X
@@ -32,8 +32,8 @@
   
   [1XContents (curl)[101X
   
-  1 [33X[0;0Ycurl automatic generated documentation[133X
-    1.1 [33X[0;0Ycurl automatic generated documentation of global functions[133X
+  1 [33X[0;0YcurlInterface automatic generated documentation[133X
+    1.1 [33X[0;0YcurlInterface automatic generated documentation of global functions[133X
       1.1-1 DownloadURL
       1.1-2 URLVerification
   
