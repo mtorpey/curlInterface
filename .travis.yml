@@ -1,0 +1,31 @@
+dist: trusty
+language: c
+
+branches:
+  except:
+    - gh-pages
+
+addons:
+  apt_packages:
+    - libgmp-dev
+    - libreadline-dev
+    - libgmp-dev:i386
+    - libreadline-dev:i386
+    - gcc-multilib
+    - g++-multilib
+    - texinfo
+
+
+install:
+  - git clone -b master --depth=2 https://github.com/gap-system/gap.git gap-src
+  - pwd
+  - ( cd gap-src && ./autogen.sh || echo no autogen )
+  - ( cd gap-src && ./configure && make && make bootstrap-pkg-minimal V=1)
+  - pwd
+  - echo ln -s $(pwd) gap-src/pkg/curl
+  - ln -s $(pwd) gap-src/pkg/curl
+  - ( cd gap-src/pkg/curl && ./autogen.sh && ./configure $CONF_FLAG && make V=1)
+  - pwd
+
+script:
+  - (cd gap-src && ./gap pkg/curl/tst/testall.g)
