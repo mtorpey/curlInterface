@@ -1,5 +1,5 @@
 /*
- * curl: Simple Web Access
+ * curlInterface: Simple Web Access
  */
 
 #include "src/compiled.h"          /* GAP headers */

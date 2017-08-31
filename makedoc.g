@@ -1,5 +1,5 @@
 #
-# curl: Simple Web Access
+# curlInterface: Simple Web Access
 #
 # This file is a script which compiles the package manual.
 #
@@ -9,5 +9,5 @@ fi;
 
 AutoDoc( rec( scaffold := true, autodoc := true ) );
 
-PrintTo("VERSION", PackageInfo("curl")[1].Version);
+PrintTo("VERSION", PackageInfo("curlInterface")[1].Version);
 

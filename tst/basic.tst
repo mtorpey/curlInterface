@@ -1,4 +1,4 @@
-gap> LoadPackage("curl", false);
+gap> LoadPackage("curlInterface", false);
 true
 
 # Check HTTP

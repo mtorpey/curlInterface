@@ -1,6 +1,6 @@
 #
-# curl: Simple Web Access
+# curlInterface: Simple Web Access
 #
 # Reading the implementation part of the package.
 #
-ReadPackage( "curl", "gap/curl.gi");
+ReadPackage( "curlInterface", "gap/curl.gi");

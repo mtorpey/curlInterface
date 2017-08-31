@@ -22,10 +22,10 @@ install:
   - ( cd gap-src && ./autogen.sh || echo no autogen )
   - ( cd gap-src && ./configure && make && make bootstrap-pkg-minimal V=1)
   - pwd
-  - echo ln -s $(pwd) gap-src/pkg/curl
-  - ln -s $(pwd) gap-src/pkg/curl
-  - ( cd gap-src/pkg/curl && ./autogen.sh && ./configure $CONF_FLAG && make V=1)
+  - echo ln -s $(pwd) gap-src/pkg/curlInterface
+  - ln -s $(pwd) gap-src/pkg/curlInterface
+  - ( cd gap-src/pkg/curlInterface && ./autogen.sh && ./configure $CONF_FLAG && make V=1)
   - pwd
 
 script:
-  - (cd gap-src && ./gap pkg/curl/tst/testall.g)
+  - (cd gap-src && ./gap pkg/curlInterface/tst/testall.g)

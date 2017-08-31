@@ -1,5 +1,5 @@
 #
-# curl: Simple Web Access
+# curlInterface: Simple Web Access
 #
 # This file contains package meta data. For additional information on
 # the meaning and correct usage of these fields, please consult the
@@ -8,7 +8,7 @@
 #
 SetPackageInfo( rec(
 
-PackageName := "curl",
+PackageName := "curlInterface",
 Subtitle := "Simple Web Access",
 Version := "0.1",
 Date := "31/08/2017", # dd/mm/yyyy format
@@ -38,7 +38,7 @@ SourceRepository := rec(
 ),
 IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
 #SupportEmail   := "TODO",
-PackageWWWHome  := "https://curl.github.io/curl/",
+PackageWWWHome  := "https://gap-packages.github.io/curlInterface/",
 PackageInfoURL  := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
 README_URL      := Concatenation( ~.PackageWWWHome, "README.md" ),
 ArchiveURL      := Concatenation( ~.SourceRepository.URL,

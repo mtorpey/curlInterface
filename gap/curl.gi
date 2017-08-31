@@ -1,5 +1,5 @@
 #
-# curl: Simple Web Access
+# curlInterface: Simple Web Access
 #
 # Implementations
 #
