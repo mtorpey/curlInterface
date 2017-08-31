@@ -15,8 +15,8 @@ false
 # Sanity check the result without actually printing it
 gap>  PositionSublist(r.result, "google") <> fail;
 true
-gap> r.result{[1..6]};
-"<HTML>"
+gap> r.result[1];
+'<'
 
 # Check HTTPS
 gap> r := DownloadURL("https://www.google.com");;
@@ -32,8 +32,8 @@ false
 # Sanity check the result without actually printing it
 gap>  PositionSublist(r.result, "google") <> fail;
 true
-gap> r.result{[1..6]};
-"<HTML>"
+gap> r.result[1];
+'<'
 
 # Check FTP
 gap> r := DownloadURL("ftp://speedtest.tele2.net/1KB.zip");;
