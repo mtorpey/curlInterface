@@ -8,7 +8,7 @@
 <Heading>curlInterface automatic generated documentation of global functions</Heading>
 
 <ManSection>
-  <Func Arg="[URL]" Name="DownloadURL" />
+  <Func Arg="URL" Name="DownloadURL" />
  <Returns>A record describing the result. This record will always contain the option 'success', which will be <K>true</K> or <K>false</K>. If 'success' is <K>true</K>, then 'result' will contain the downloaded file. If 'success' is <K>false</K>, then 'error' will contain a human-readable string describing the error.
 </Returns>
  <Description>
@@ -19,8 +19,7 @@ as a string, which can start with either of http:// or https://
 
 
 <ManSection>
-  <Func Arg="[Bool]" Name="URLVerification" />
- <Returns></Returns>
+  <Func Arg="Bool" Name="URLVerification" />
  <Description>
 Control https verification. Disabling checking (by passing
 <K>false</K>) disables checking of https addresses. This reduces
