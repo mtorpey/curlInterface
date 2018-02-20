@@ -4,7 +4,7 @@
 # Declarations
 #
 
-#! @Arguments [URL]
+#! @Arguments URL
 #! @Description
 #!  Download a URL from the internet. Accepts a web address
 #!  as a string, which can start with either of http:// or https://
@@ -16,7 +16,7 @@
 DeclareGlobalFunction( "DownloadURL" );
 
 
-#! @Arguments [Bool]
+#! @Arguments Bool
 #! @Description
 #!  Control https verification. Disabling checking (by passing
 #!  <K>false</K>) disables checking of https addresses. This reduces
