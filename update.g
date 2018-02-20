@@ -47,7 +47,7 @@ PrintPackageList := function(stream, pkgs)
 end;
 
 GeneratePackageYML:=function(pkg)
-    local stream, authors, maintainers, formats, f, tmp;
+    local stream, authors, maintainers, contributors, formats, f, tmp;
 
     stream := OutputTextFile("_data/package.yml", false);
     SetPrintFormattingStatus(stream, false);
@@ -69,6 +69,12 @@ GeneratePackageYML:=function(pkg)
     if Length(maintainers) > 0 then
         AppendTo(stream, "maintainers:\n");
         PrintPeopleList(stream, maintainers);
+    fi;
+
+    contributors := Filtered(pkg.Persons, p -> not p.IsMaintainer and not p.IsAuthor);
+    if Length(contributors) > 0 then
+        AppendTo(stream, "contributors:\n");
+        PrintPeopleList(stream, contributors);
     fi;
 
     if IsBound(pkg.Dependencies.GAP) then
@@ -108,13 +114,24 @@ GeneratePackageYML:=function(pkg)
     fi;
 
     AppendTo(stream, "abstract: |\n");
-    AppendTo(stream, "    ", pkg.AbstractHTML, "\n\n");
+    for tmp in SplitString(pkg.AbstractHTML,"\n") do
+        AppendTo(stream, "    ", tmp, "\n");
+    od;
+    AppendTo(stream, "\n");
 
     AppendTo(stream, "status: ", pkg.Status, "\n");
-    AppendTo(stream, "doc-html: ", pkg.PackageDoc.HTMLStart, "\n");
-    AppendTo(stream, "doc-pdf: ", pkg.PackageDoc.PDFFile, "\n");
+    if IsRecord(pkg.PackageDoc) then
+        AppendTo(stream, "doc-html: ", pkg.PackageDoc.HTMLStart, "\n");
+        AppendTo(stream, "doc-pdf: ", pkg.PackageDoc.PDFFile, "\n");
+    else
+        Assert(0, IsList(pkg.PackageDoc));
+        AppendTo(stream, "doc-html: ", pkg.PackageDoc[1].HTMLStart, "\n");
+        AppendTo(stream, "doc-pdf: ", pkg.PackageDoc[1].PDFFile, "\n");
+        if Length(pkg.PackageDoc) > 1 then
+            Print("Warning, this package has more than one help book!\n");
+        fi;
+    fi;
 
-    # TODO: use AbstractHTML?
     # TODO: use Keywords?
 
     CloseStream(stream);

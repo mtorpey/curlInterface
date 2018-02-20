@@ -28,7 +28,6 @@ downloads:
       url: https://github.com/gap-packages/curlInterface/releases/download/v0.1/curlInterface-0.1.tar.gz
 
 abstract: |
-    
 
 status: dev
 doc-html: doc/chap0.html
