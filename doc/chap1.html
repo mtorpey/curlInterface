@@ -5,7 +5,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<title>GAP (curl) - Chapter 1: curlInterface automatic generated documentation</title>
+<title>GAP (curl) - Chapter 1: Overview</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="generator" content="GAPDoc2HTML" />
 <link rel="stylesheet" type="text/css" href="manual.css" />
@@ -20,37 +20,33 @@
 <div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap0.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapInd.html">[Next Chapter]</a>&nbsp;  </div>
 
 <p id="mathjaxlink" class="pcenter"><a href="chap1_mj.html">[MathJax on]</a></p>
-<p><a id="X80ABC99784EA753E" name="X80ABC99784EA753E"></a></p>
-<div class="ChapSects"><a href="chap1.html#X80ABC99784EA753E">1 <span class="Heading">curlInterface automatic generated documentation</span></a>
-<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X7C1AC985842F1C01">1.1 <span class="Heading">curlInterface automatic generated documentation of global functions</span></a>
+<p><a id="X8389AD927B74BA4A" name="X8389AD927B74BA4A"></a></p>
+<div class="ChapSects"><a href="chap1.html#X8389AD927B74BA4A">1 <span class="Heading">Overview</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X86FA580F8055B274">1.1 <span class="Heading">Functions</span></a>
 </span>
 <div class="ContSSBlock">
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X7827F7DE85113D7E">1.1-1 DownloadURL</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X7BA4811D79CF608E">1.1-2 URLVerification</a></span>
 </div></div>
 </div>
 
-<h3>1 <span class="Heading">curlInterface automatic generated documentation</span></h3>
+<h3>1 <span class="Heading">Overview</span></h3>
 
-<p><a id="X7C1AC985842F1C01" name="X7C1AC985842F1C01"></a></p>
+<p>CurlInterface provides functionality which allows URLs to be downloaded from the internet.</p>
 
-<h4>1.1 <span class="Heading">curlInterface automatic generated documentation of global functions</span></h4>
+<p><a id="X86FA580F8055B274" name="X86FA580F8055B274"></a></p>
+
+<h4>1.1 <span class="Heading">Functions</span></h4>
+
+<p>At present, curlInterface provides a single function:</p>
 
 <p><a id="X7827F7DE85113D7E" name="X7827F7DE85113D7E"></a></p>
 
 <h5>1.1-1 DownloadURL</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DownloadURL</code>( [<var class="Arg">URL</var>] )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DownloadURL</code>( <var class="Arg">URL</var>[, <var class="Arg">verifyCert</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns: A record describing the result. This record will always contain the option 'success', which will be <code class="keyw">true</code> or <code class="keyw">false</code>. If 'success' is <code class="keyw">true</code>, then 'result' will contain the downloaded file. If 'success' is <code class="keyw">false</code>, then 'error' will contain a human-readable string describing the error.</p>
 
-<p>Download a URL from the internet. Accepts a web address as a string, which can start with either of http:// or https://</p>
-
-<p><a id="X7BA4811D79CF608E" name="X7BA4811D79CF608E"></a></p>
-
-<h5>1.1-2 URLVerification</h5>
-
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; URLVerification</code>( [<var class="Arg">Bool</var>] )</td><td class="tdright">( function )</td></tr></table></div>
-<p>Control https verification. Disabling checking (by passing <code class="keyw">false</code>) disables checking of https addresses. This reduces security, but can be required for badly configured servers or clients.</p>
+<p>Download a URL from the internet. Accepts a web address as a string, which can start with either of http:// or https:// The optional argument <var class="Arg">verifyCert</var> can be set to <code class="keyw">false</code> to disable verification of HTTPS certificates. If not specified, it defaults to <code class="keyw">true</code>.</p>
 
 
 <div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap0.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapInd.html">[Next Chapter]</a>&nbsp;  </div>

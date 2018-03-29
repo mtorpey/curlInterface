@@ -1,12 +1,17 @@
   
-  [1X1 [33X[0;0YcurlInterface automatic generated documentation[133X[101X
+  [1X1 [33X[0;0YOverview[133X[101X
+  
+  [33X[0;0YCurlInterface provides functionality which allows URLs to be downloaded from
+  the internet.[133X
   
   
-  [1X1.1 [33X[0;0YcurlInterface automatic generated documentation of global functions[133X[101X
+  [1X1.1 [33X[0;0YFunctions[133X[101X
+  
+  [33X[0;0YAt present, curlInterface provides a single function:[133X
   
   [1X1.1-1 DownloadURL[101X
   
-  [29X[2XDownloadURL[102X( [[3XURL[103X] ) [32X function
+  [33X[1;0Y[29X[2XDownloadURL[102X( [3XURL[103X[, [3XverifyCert[103X] ) [32X function[133X
   [6XReturns:[106X  [33X[0;10YA  record  describing  the result. This record will always contain
             the option 'success', which will be [9Xtrue[109X or [9Xfalse[109X. If 'success' is
             [9Xtrue[109X, then 'result' will contain the downloaded file. If 'success'
@@ -14,13 +19,7 @@
             describing the error.[133X
   
   [33X[0;0YDownload  a  URL from the internet. Accepts a web address as a string, which
-  can start with either of http:// or https://[133X
-  
-  [1X1.1-2 URLVerification[101X
-  
-  [29X[2XURLVerification[102X( [[3XBool[103X] ) [32X function
-  
-  [33X[0;0YControl  https  verification. Disabling checking (by passing [9Xfalse[109X) disables
-  checking  of https addresses. This reduces security, but can be required for
-  badly configured servers or clients.[133X
+  can  start  with  either  of  http://  or  https://  The  optional  argument
+  [3XverifyCert[103X   can   be   set  to  [9Xfalse[109X  to  disable  verification  of  HTTPS
+  certificates. If not specified, it defaults to [9Xtrue[109X.[133X
   

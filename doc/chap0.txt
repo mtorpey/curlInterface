@@ -6,10 +6,10 @@
                               [1X Simple Web Access [101X
   
   
-                                      0.1
+                                     1.0.0
   
   
-                                 31 August 2017
+                                 29 March 2018
   
   
                              Christopher Jefferson
@@ -32,10 +32,9 @@
   
   [1XContents (curl)[101X
   
-  1 [33X[0;0YcurlInterface automatic generated documentation[133X
-    1.1 [33X[0;0YcurlInterface automatic generated documentation of global functions[133X
+  1 [33X[0;0YOverview[133X
+    1.1 [33X[0;0YFunctions[133X
       1.1-1 DownloadURL
-      1.1-2 URLVerification
   
   
   [32X
