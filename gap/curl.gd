@@ -1,8 +1,15 @@
 #
 # curlInterface: Simple Web Access
 #
-# Declarations
-#
+#! @Chapter Overview
+#! 
+#! CurlInterface provides functionality which allows URLs to be 
+#! downloaded from the internet.
+
+
+#! @Section Functions
+#!
+#! At present, curlInterface provides a single function:
 
 #! @Arguments URL[, verifyCert]
 #! @Description
