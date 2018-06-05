@@ -11,6 +11,7 @@ addons:
 
 matrix:
   include:
+    - env: GAPBRANCH="stable-4.9"
     - env: CFLAGS="-O2" CC=clang CXX=clang++
       compiler: clang
     - env: CFLAGS="-O2"
