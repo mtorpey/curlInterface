@@ -3,13 +3,13 @@
 #
 #! @Chapter Overview
 #! 
-#! CurlInterface provides functionality which allows URLs to be 
-#! downloaded from the internet.
+#! CurlInterface allows http and https URLs to be downloaded from
+#! the internet, using the 'curl' library.
 
 
 #! @Section Functions
 #!
-#! At present, curlInterface provides a single function:
+#! curlInterface currently provides a single function:
 
 #! @Arguments URL[, verifyCert]
 #! @Description
