@@ -15,12 +15,14 @@
 #! @Description
 #!  Download a URL from the internet. Accepts a web address
 #!  as a string, which can start with either of http:// or https://
-#!  The optional argument <A>verifyCert</A> can be set to <K>false</K>
-#!  to disable verification of HTTPS certificates. If not specified,
-#!  it defaults to <K>true</K>.
+#!  Setting the optional argument <A>verifyCert</A> to <K>false</K>
+#!  disables verification of HTTPS certificates.
+#!  <A>verifyCert</A> defaults to <K>true</K>.
+#!
 #! @Returns A record describing the result. This record will always
-#!  contain the option 'success', which will be <K>true</K> or
-#!  <K>false</K>. If 'success' is <K>true</K>, then 'result' will
-#!  contain the downloaded file. If 'success' is <K>false</K>, then
-#!  'error' will contain a human-readable string describing the error.
+#!  contain the component 'success', which is a boolean describing
+#!  if the download was successful.
+#!  If 'success' is <K>true</K>, then the downloaded files is stored
+#!  in the component 'result'. If 'success' is <K>false</K>, then
+#!  'error' will contain a human-readable error string.
 DeclareGlobalFunction( "DownloadURL" );
