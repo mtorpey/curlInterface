@@ -4,6 +4,10 @@ env:
     - GAPROOT=gaproot
     - COVDIR=coverage
 
+branches:
+  except:
+    - gh-pages
+
 addons:
   apt_packages:
     - libgmp-dev
