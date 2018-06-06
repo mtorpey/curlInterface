@@ -6,6 +6,36 @@
 #! CurlInterface allows http and https URLs to be downloaded from
 #! the internet, using the 'curl' library.
 
+#! @Section Installing curlInterface
+#!
+#! curlInterface requires the 'curl' library, available from
+#! <URL>https://curl.haxx.se/</URL>. Instructions for building
+#! and installing curl can be found at
+#! <URL>https://curl.haxx.se/docs/install.html</URL>, however
+#! in most systems curl can be installed from your OS's package
+#! manager.
+#!
+#! @Subsection Linux
+#!
+#! <List>
+#! <Item>
+#! On Debian and Ubuntu, call: <C>apt-get install libcurl4-gnutls-dev</C></Item>
+#! <Item>
+#! On Redhat and derivatives, call: <C>yum install curl-devel</C></Item>
+#! </List>
+#!
+#! @Subsection Cygwin
+#!
+#! Install <C>libcurl-devel</C> from the cygwin package manager
+#!
+#! @Subsection Mac OS X
+#!
+#! curl is installed by default on Macs.
+#! <List>
+#! <Item>Homebrew: <C>brew install TODO-I-DON'T-KNOW</C></Item>
+#! <Item>Fink: <C>fink install libcurl4</C></Item>
+#! <Item>MacPorts: <C>port install curl</C></Item>
+#! </List>
 
 #! @Section Functions
 #!
