@@ -122,3 +122,24 @@ gap> PositionSublist(r.result, "google") <> fail;
 true
 gap> PositionSublist(r.result, "tiger") <> fail;
 false
+
+# HEAD requests
+gap> CurlRequest("www.google.com", "HEAD" , "");
+rec( result := "", success := true )
+gap> r := CurlRequest("www.google.cheesebadger", "HEAD" , "");;
+gap> r.success;
+false
+
+# DELETE requests
+gap> r := CurlRequest("www.google.com", "DELETE" , "");;
+gap> r.success;
+true
+gap> PositionSublist(r.result, "405") <> fail;
+true
+gap> PositionSublist(r.result, "tiger") <> fail;
+false
+gap> r := CurlRequest("www.httpbin.org/delete", "DELETE" , "");;
+gap> r.success;
+true
+gap> PositionSublist(r.result, "405") <> fail;
+false
