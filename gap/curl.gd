@@ -41,45 +41,46 @@
 
 #! @Section Functions
 #!
-#! curlInterface currently provides two simple functions:
+#! curlInterface currently provides the following functions for interacting with
+#! URLs:
 
 #! @Arguments URL[, verifyCert]
+#! @Returns
+#!   a record
 #! @Description
-#!  Download a URL from the internet. Accepts a web address
-#!  as a string, which can start with either of http:// or https://
-#!  Setting the optional argument <A>verifyCert</A> to <K>false</K>
-#!  disables verification of HTTPS certificates.
-#!  <A>verifyCert</A> defaults to <K>true</K>.
+#!   Download a URL from the internet. Accepts a web address as a string, which
+#!   can start with either "http://" or "https://".  Setting the optional
+#!   argument <A>verifyCert</A> to <K>false</K> disables verification of HTTPS
+#!   certificates.  <A>verifyCert</A> defaults to <K>true</K>.
 #!
-#! @Returns A record describing the result. This record will always
-#!  contain the component 'success', which is a boolean describing
-#!  if the download was successful.
-#!  If 'success' is <K>true</K>, then the downloaded files is stored
-#!  in the component 'result'. If 'success' is <K>false</K>, then
-#!  'error' will contain a human-readable error string.
+#!   Returns a record describing the result. This record will always contain the
+#!   component <C>success</C>, which is a boolean describing whether the
+#!   download was successful.  If <C>success</C> is <K>true</K>, then the
+#!   downloaded information is stored in the component <C>result</C>; otherwise,
+#!   <C>error</C> will contain a human-readable error string.
 DeclareGlobalFunction( "DownloadURL" );
 
 #! @Arguments URL, str[, verifyCert]
+#! @Returns
+#!   a record
 #! @Description
-#!  Send an HTTP POST request to a URL on the internet. The argument
-#!  <A>URL</A> should be a string describing an address, and should
-#!  start with either http:// or https://
-#!  The argument <A>str</A> should be a string which will be sent to
-#!  the server as a POST request.
-#!  Setting the optional argument <A>verifyCert</A> to <K>false</K>
-#!  disables verification of HTTPS certificates.
-#!  <A>verifyCert</A> defaults to <K>true</K>.
+#!   Send an HTTP POST request to a URL on the internet. The argument <A>URL</A>
+#!   should be a string describing an address, and should start with either
+#!   "http://" or "https://". The argument <A>str</A> should be a string which
+#!   will be sent to the server as a POST request.  Setting the optional
+#!   argument <A>verifyCert</A> to <K>false</K> disables verification of HTTPS
+#!   certificates.  <A>verifyCert</A> defaults to <K>true</K>.
 #!
-#! @Returns A record describing the result. This record will always
-#!  contain the component 'success', which is a boolean describing
-#!  whether the download was successful.
-#!  If 'success' is <K>true</K>, then the response sent by the 
-#!  server is stored in the component 'result'.
-#!  If 'success' is <K>false</K>, then 'error' will contain a
-#!  human-readable error string.
+#!   Returns a record describing the result. This record will always contain the
+#!   component <C>success</C>, which is a boolean describing whether the
+#!   download was successful.  If <C>success</C> is <K>true</K>, then the
+#!   downloaded information is stored in the component <C>result</C>; otherwise,
+#!   <C>error</C> will contain a human-readable error string.
 DeclareGlobalFunction( "PostToURL" );
 
-#! @Arguments URL, type, out_string, verifyCert)
+#! @Arguments URL, type, out_string[, verifyCert]
+#! @Returns
+#!   a record
 #! @Description
 #!   Send an HTTP request of type <A>type</A> to a URL on the internet.
 #!   <A>URL</A>, <A>type</A>, and <A>out_string</A> should all be strings:
@@ -87,7 +88,14 @@ DeclareGlobalFunction( "PostToURL" );
 #!   request (e.g. "GET"), and <A>out_string</A> is the message, if any, to send
 #!   to the server (in requests such as GET this will be ignored).  Finally,
 #!   <A>verifyCert</A> should be a boolean describing whether HTTPS certificates
-#!   should be verified.  Currently only GET and POST requests are supported.
-#!   For convenience, GET requests can be called with <Func Name="DownloadURL"/>
-#!   and POST requests can be called with <Func Name="PostToURL"/>.
+#!   should be verified (optional, with a default value of <K>true</K>).
+#!   Currently only GET and POST requests are supported.  For convenience, GET
+#!   requests can be called with <Ref Func="DownloadURL"/> and POST requests can
+#!   be called with <Ref Func="PostToURL"/>.
+#!
+#!   Returns a record describing the result. This record will always contain the
+#!   component <C>success</C>, which is a boolean describing whether the
+#!   download was successful.  If <C>success</C> is <K>true</K>, then the
+#!   downloaded information is stored in the component <C>result</C>; otherwise,
+#!   <C>error</C> will contain a human-readable error string.
 DeclareGlobalFunction( "CurlRequest" );
