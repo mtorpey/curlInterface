@@ -65,10 +65,19 @@ Obj FuncCURL_REQUEST(Obj self, Obj URL, Obj type_string, Obj out_string, Obj ver
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, in_string);
         curl_easy_setopt(curl, CURLOPT_TCP_NODELAY, 1L);
 
-        if (strcmp(type, "POST") == 0) {
+        if (strcmp(type, "GET") == 0) { // simply download from the URL
+            curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
+        }
+        else if (strcmp(type, "POST") == 0) { // send a string to the URL
             curl_easy_setopt(curl, CURLOPT_POST, 1L);
             curl_easy_setopt(curl, CURLOPT_COPYPOSTFIELDS, CHARS_STRING(out_string));
         }
+        else if (strcmp(type, "HEAD") == 0) { // only get headers, without body
+            curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
+        }
+        else { // custom request e.g. DELETE
+            curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, type);
+        }            
 
         if (verifyCert == True) {
             //
