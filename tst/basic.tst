@@ -113,7 +113,7 @@ gap> PositionSublist(r.result, "lion") <> fail;
 false
 
 # Check not IsStringRep (request type)
-gap> r := CurlRequest("www.google.com", ['G', 'E', 'T'] , "", true);;
+gap> r := CurlRequest("www.google.com", ['G', 'E', 'T'] , "");;
 gap> r.success;
 true
 gap> SortedList(RecNames(r));

@@ -31,3 +31,9 @@ Error, CurlRequest: <out_string> must be a string
 # invalid verifyCert
 gap> DownloadURL("https://www.google.com", "maybe verify cert");
 Error, CurlRequest: <verifyCert> must be true or false
+
+# too many arguments
+gap> CurlRequest("www.google.com", "GET", "", true, 3, true);
+Error, CurlRequest: usage: requires 3 or 4 arguments, but 6 were given
+gap> DownloadURL("https://www.google.com", "maybe verify cert");
+Error, CurlRequest: <verifyCert> must be true or false
