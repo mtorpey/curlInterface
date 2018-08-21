@@ -78,6 +78,27 @@ DeclareGlobalFunction( "DownloadURL" );
 #!   <C>error</C> will contain a human-readable error string.
 DeclareGlobalFunction( "PostToURL" );
 
+#! @Arguments URL[, verifyCert]
+#! @Returns
+#!   a record
+#! @Description
+#!   Attempts to delete a file on the internet, by sending an HTTP DELETE
+#!   request to the given URL.  The argument <A>URL</A> should be a string
+#!   describing an address, and should start with either "http://" or
+#!   "https://".  Setting the optional argument <A>verifyCert</A> to
+#!   <K>false</K> disables verification of HTTPS certificates.
+#!   <A>verifyCert</A> defaults to <K>true</K>.
+#!
+#!   Returns a record describing the result. This record will always contain the
+#!   component <C>success</C>, which is a boolean describing whether the request
+#!   was received by the server.  If <C>success</C> is <K>true</K>, then the
+#!   information returned by the server is stored in the component
+#!   <C>result</C>; otherwise, <C>error</C> will contain a human-readable error
+#!   string.  Note that <C>success</C> does not guarantee that the server
+#!   actually deleted anything, only that the HTTP DELETE request was sent
+#!   successfully.
+DeclareGlobalFunction( "DeleteURL" );
+
 #! @Arguments URL, type, out_string[, verifyCert]
 #! @Returns
 #!   a record

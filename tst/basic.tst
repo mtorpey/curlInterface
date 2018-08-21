@@ -131,14 +131,14 @@ gap> r.success;
 false
 
 # DELETE requests
-gap> r := CurlRequest("www.google.com", "DELETE" , "");;
+gap> r := DeleteURL("https://www.google.com");;
 gap> r.success;
 true
 gap> PositionSublist(r.result, "405") <> fail;
 true
 gap> PositionSublist(r.result, "tiger") <> fail;
 false
-gap> r := CurlRequest("www.httpbin.org/delete", "DELETE" , "");;
+gap> r := DeleteURL("www.httpbin.org/delete");;
 gap> r.success;
 true
 gap> PositionSublist(r.result, "405") <> fail;

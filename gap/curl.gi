@@ -36,3 +36,8 @@ InstallGlobalFunction( "PostToURL",
 function(URL, str, opt...)
     return CallFuncList(CurlRequest, Concatenation([URL, "POST", str], opt));
 end);
+
+InstallGlobalFunction( "DeleteURL",
+function(URL, opt...)
+    return CallFuncList(CurlRequest, Concatenation([URL, "DELETE", ""], opt));
+end);
