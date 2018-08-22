@@ -32,6 +32,10 @@ Error, CurlRequest: <out_string> must be a string
 gap> DownloadURL("https://www.google.com", rec(verifyCert := "maybe"));
 Error, CurlRequest: <opts>.verifyCert must be true or false
 
+# invalid verbose
+gap> DownloadURL("https://www.google.com", rec(verbose := "yes"));
+Error, CurlRequest: <opts>.verbose must be true or false
+
 # invalid opts
 gap> DownloadURL("https://www.google.com", "please verify the cert");
 Error, CurlRequest: <opts> must be a record

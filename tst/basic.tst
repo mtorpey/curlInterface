@@ -154,3 +154,12 @@ gap> r.success;
 true
 gap> PositionSublist(r.result, "405") <> fail;
 false
+
+# Check verbose requests don't break anything (we can't catch the output here)
+gap> r := DownloadURL("http://www.httpbin.org/get", rec(verbose := true));;
+gap> r.success;
+true
+gap> PositionSublist(r.result, "httpbin") <> fail;
+true
+gap> PositionSublist(r.result, "404") <> fail;
+false
