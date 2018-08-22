@@ -17,14 +17,18 @@ size_t write_string(void * ptr, size_t size, size_t nmemb, Obj buf)
     return size * nmemb;
 }
 
-Obj FuncCURL_REQUEST(Obj self, Obj URL, Obj type, Obj out_string, Obj verifyCert)
+Obj FuncCURL_REQUEST(Obj self,
+                     Obj URL,
+                     Obj type,
+                     Obj out_string,
+                     Obj verifyCert)
 {
     CURL *   curl;
     CURLcode res;
     Obj      in_string = MakeString("");
     Obj      errorstring = 0;
     UInt     len;
-    char     arraybuf[4096] = { 0 };
+    char     urlbuf[4096] = { 0 };
     char *   typebuf = NULL;
 
     if (!IS_STRING_REP(URL)) {
@@ -42,11 +46,11 @@ Obj FuncCURL_REQUEST(Obj self, Obj URL, Obj type, Obj out_string, Obj verifyCert
     // copy URL into a buffer, as the GAP string could be moved
     // by a garbage collection triggered by write_string
     len = GET_LEN_STRING(URL) + 1;
-    if (len > sizeof(arraybuf)) {
+    if (len > sizeof(urlbuf)) {
         ErrorMayQuit("CURL_REQUEST: <URL> must be less than %d chars",
-                     sizeof(arraybuf), 0L);
+                     sizeof(urlbuf), 0L);
     }
-    memcpy(arraybuf, CHARS_STRING(URL), len);
+    memcpy(urlbuf, CHARS_STRING(URL), len);
 
     res = curl_global_init(CURL_GLOBAL_DEFAULT);
     if (res != 0) {
@@ -59,25 +63,30 @@ Obj FuncCURL_REQUEST(Obj self, Obj URL, Obj type, Obj out_string, Obj verifyCert
         char errbuf[CURL_ERROR_SIZE];
         curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errbuf);
 
-        curl_easy_setopt(curl, CURLOPT_URL, arraybuf);
+        curl_easy_setopt(curl, CURLOPT_URL, urlbuf);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_string);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, in_string);
         curl_easy_setopt(curl, CURLOPT_TCP_NODELAY, 1L);
 
-        if (strcmp(CHARS_STRING(type), "GET") == 0) { // simply download from the URL
+        if (strcmp(CHARS_STRING(type), "GET") == 0) {
+            // simply download from the URL
             curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
         }
-        else if (strcmp(CHARS_STRING(type), "POST") == 0) { // send a string to the URL
+        else if (strcmp(CHARS_STRING(type), "POST") == 0) {
+            // send a string to the URL
             len = GET_LEN_STRING(out_string); // no null character
             curl_easy_setopt(curl, CURLOPT_POST, 1L);
             curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE_LARGE, len);
+            curl_easy_setopt(curl, CURLOPT_COPYPOSTFIELDS,
+                             CHARS_STRING(out_string));
             // using COPYPOSTFIELDS copies the data right now
-            curl_easy_setopt(curl, CURLOPT_COPYPOSTFIELDS, CHARS_STRING(out_string));
         }
-        else if (strcmp(CHARS_STRING(type), "HEAD") == 0) { // only get headers, without body
+        else if (strcmp(CHARS_STRING(type), "HEAD") == 0) {
+            // only get headers, without body
             curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
         }
-        else { // custom request e.g. DELETE
+        else {
+            // custom request e.g. DELETE
             len = GET_LEN_STRING(type) + 1; // include null character
             typebuf = (char *) malloc(len);
             memcpy(typebuf, CHARS_STRING(type), len);
