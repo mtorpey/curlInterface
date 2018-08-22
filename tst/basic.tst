@@ -66,6 +66,17 @@ true
 gap> PositionSublist(r.result, "field3") <> fail;
 false
 
+# Check POST on a string with null characters
+gap> r := PostToURL("httpbin.org/post", "field1=my\000first\000field");;
+gap> SortedList(RecNames(r));
+[ "result", "success" ]
+gap> r.success;
+true
+gap> PositionSublist(r.result, "my\\u0000first\\u0000field") <> fail;
+true
+gap> PositionSublist(r.result, "field3") <> fail;
+false
+
 # Check POST method not allowed (405)
 gap> r := PostToURL("www.google.com", "myfield=42");;
 gap> SortedList(RecNames(r));
