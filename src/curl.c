@@ -17,24 +17,23 @@ size_t write_string(void * ptr, size_t size, size_t nmemb, Obj buf)
     return size * nmemb;
 }
 
-Obj FuncCURL_REQUEST(Obj self, Obj URL, Obj type_string, Obj out_string, Obj verifyCert)
+Obj FuncCURL_REQUEST(Obj self, Obj URL, Obj type, Obj out_string, Obj verifyCert)
 {
     CURL *   curl;
     CURLcode res;
-    char *   type;
     Obj      in_string = MakeString("");
     Obj      errorstring = 0;
     UInt     len;
     char     arraybuf[4096] = { 0 };
+    char *   typebuf = NULL;
 
     if (!IS_STRING_REP(URL)) {
         URL = CopyToStringRep(URL);
     }
 
-    if (!IS_STRING_REP(type_string)) {
-        type_string = CopyToStringRep(type_string);
+    if (!IS_STRING_REP(type)) {
+        type = CopyToStringRep(type);
     }
-    type = CHARS_STRING(type_string);
 
     if (!IS_STRING_REP(out_string)) {
         out_string = CopyToStringRep(out_string);
@@ -65,18 +64,21 @@ Obj FuncCURL_REQUEST(Obj self, Obj URL, Obj type_string, Obj out_string, Obj ver
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, in_string);
         curl_easy_setopt(curl, CURLOPT_TCP_NODELAY, 1L);
 
-        if (strcmp(type, "GET") == 0) { // simply download from the URL
+        if (strcmp(CHARS_STRING(type), "GET") == 0) { // simply download from the URL
             curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
         }
-        else if (strcmp(type, "POST") == 0) { // send a string to the URL
+        else if (strcmp(CHARS_STRING(type), "POST") == 0) { // send a string to the URL
             curl_easy_setopt(curl, CURLOPT_POST, 1L);
             curl_easy_setopt(curl, CURLOPT_COPYPOSTFIELDS, CHARS_STRING(out_string));
         }
-        else if (strcmp(type, "HEAD") == 0) { // only get headers, without body
+        else if (strcmp(CHARS_STRING(type), "HEAD") == 0) { // only get headers, without body
             curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
         }
         else { // custom request e.g. DELETE
-            curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, type);
+            len = GET_LEN_STRING(type) + 1; // include null character
+            typebuf = (char *) malloc(len);
+            memcpy(typebuf, CHARS_STRING(type), len);
+            curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, typebuf);
         }            
 
         if (verifyCert == True) {
@@ -118,6 +120,7 @@ Obj FuncCURL_REQUEST(Obj self, Obj URL, Obj type_string, Obj out_string, Obj ver
     }
 
     curl_global_cleanup();
+    free(typebuf);
 
     Obj prec = NEW_PREC(2);
     SET_LEN_PREC(prec, 2);
