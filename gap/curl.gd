@@ -44,79 +44,111 @@
 #! curlInterface currently provides the following functions for interacting with
 #! URLs:
 
-#! @Arguments URL[, verifyCert]
+#! @Arguments URL[, opts]
 #! @Returns
 #!   a record
 #! @Description
-#!   Download a URL from the internet. Accepts a web address as a string, which
-#!   can start with either "http://" or "https://".  Setting the optional
-#!   argument <A>verifyCert</A> to <K>false</K> disables verification of HTTPS
-#!   certificates.  <A>verifyCert</A> defaults to <K>true</K>.
+#!   Downloads a URL from the internet.  <A>URL</A> should be a string
+#!   describing the address, and should start with either "http://" or
+#!   "https://".
+#!   For descriptions of the output and the additional argument <A>opts</A>, see
+#!   <Ref Func="CurlRequest"/>.
 #!
-#!   Returns a record describing the result. This record will always contain the
-#!   component <C>success</C>, which is a boolean describing whether the
-#!   download was successful.  If <C>success</C> is <K>true</K>, then the
-#!   downloaded information is stored in the component <C>result</C>; otherwise,
-#!   <C>error</C> will contain a human-readable error string.
+#! @BeginExample
+#! gap> r := DownloadURL("www.gap-system.org");;
+#! gap> r.success;
+#! true
+#! gap> r.result{[1..50]};
+#! "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n\n<!DOCTYPE "
+#! @EndExample
 DeclareGlobalFunction( "DownloadURL" );
 
-#! @Arguments URL, str[, verifyCert]
+#! @Arguments URL, str[, opts]
 #! @Returns
 #!   a record
 #! @Description
-#!   Send an HTTP POST request to a URL on the internet. The argument <A>URL</A>
-#!   should be a string describing an address, and should start with either
-#!   "http://" or "https://". The argument <A>str</A> should be a string which
-#!   will be sent to the server as a POST request.  Setting the optional
-#!   argument <A>verifyCert</A> to <K>false</K> disables verification of HTTPS
-#!   certificates.  <A>verifyCert</A> defaults to <K>true</K>.
+#!   Sends an HTTP POST request to a URL on the internet. <A>URL</A> should be a
+#!   string describing the address, and should start with either "http://" or
+#!   "https://".  <A>str</A> should be the string which will be sent to the
+#!   server as a POST request.
+#!   For descriptions of the output and the additional argument <A>opts</A>, see
+#!   <Ref Func="CurlRequest"/>.
 #!
-#!   Returns a record describing the result. This record will always contain the
-#!   component <C>success</C>, which is a boolean describing whether the
-#!   download was successful.  If <C>success</C> is <K>true</K>, then the
-#!   downloaded information is stored in the component <C>result</C>; otherwise,
-#!   <C>error</C> will contain a human-readable error string.
+#! @BeginExample
+#! gap> r := PostToURL("www.httpbin.org/post", "animal=tiger");;
+#! gap> r.success;
+#! true
+#! gap> r.result{[51..100]};
+#! "\"form\": {\n    \"animal\": \"tiger\"\n  }, \n  \"headers\":"
+#! @EndExample
 DeclareGlobalFunction( "PostToURL" );
 
-#! @Arguments URL[, verifyCert]
+#! @Arguments URL[, opts]
 #! @Returns
 #!   a record
 #! @Description
 #!   Attempts to delete a file on the internet, by sending an HTTP DELETE
-#!   request to the given URL.  The argument <A>URL</A> should be a string
-#!   describing an address, and should start with either "http://" or
-#!   "https://".  Setting the optional argument <A>verifyCert</A> to
-#!   <K>false</K> disables verification of HTTPS certificates.
-#!   <A>verifyCert</A> defaults to <K>true</K>.
+#!   request to the given URL.  <A>URL</A> should be a string describing the
+#!   address to be deleted, and should start with either "http://" or
+#!   "https://".
+#!   For descriptions of the output and the additional argument <A>opts</A>, see
+#!   <Ref Func="CurlRequest"/>.
 #!
-#!   Returns a record describing the result. This record will always contain the
-#!   component <C>success</C>, which is a boolean describing whether the request
-#!   was received by the server.  If <C>success</C> is <K>true</K>, then the
-#!   information returned by the server is stored in the component
-#!   <C>result</C>; otherwise, <C>error</C> will contain a human-readable error
-#!   string.  Note that <C>success</C> does not guarantee that the server
-#!   actually deleted anything, only that the HTTP DELETE request was sent
-#!   successfully.
+#! @BeginExample
+#! gap> r := DeleteURL("www.google.com");;
+#! gap> r.success;
+#! true
+#! gap> r.result{[1471..1540]};           
+#! "<p>The request method <code>DELETE</code> is inappropriate for the URL"
+#! @EndExample
 DeclareGlobalFunction( "DeleteURL" );
 
-#! @Arguments URL, type, out_string[, verifyCert]
+#! @Arguments URL, type, out_string[, opts]
 #! @Returns
 #!   a record
 #! @Description
 #!   Send an HTTP request of type <A>type</A> to a URL on the internet.
 #!   <A>URL</A>, <A>type</A>, and <A>out_string</A> should all be strings:
-#!   <A>URL</A> is the URL of the server, <A>type</A> is the type of HTTP
-#!   request (e.g. "GET"), and <A>out_string</A> is the message, if any, to send
-#!   to the server (in requests such as GET this will be ignored).  Finally,
-#!   <A>verifyCert</A> should be a boolean describing whether HTTPS certificates
-#!   should be verified (optional, with a default value of <K>true</K>).
-#!   Currently only GET and POST requests are supported.  For convenience, GET
-#!   requests can be called with <Ref Func="DownloadURL"/> and POST requests can
-#!   be called with <Ref Func="PostToURL"/>.
+#!   <A>URL</A> is the URL of the server (which should start with "http://" or
+#!   "https://"), <A>type</A> is the type of HTTP request (e.g. "GET"), and
+#!   <A>out_string</A> is the message, if any, to send to the server (in
+#!   requests such as GET this will be ignored).
 #!
-#!   Returns a record describing the result. This record will always contain the
-#!   component <C>success</C>, which is a boolean describing whether the
-#!   download was successful.  If <C>success</C> is <K>true</K>, then the
-#!   downloaded information is stored in the component <C>result</C>; otherwise,
-#!   <C>error</C> will contain a human-readable error string.
+#!   An optional fourth argument <A>opts</A> may be included, which should be a
+#!   record specifying additional options for the request.  The following
+#!   options are supported:
+#!     * <C>verifyCert</C>: a boolean describing whether to verify HTTPS
+#!       certificates (default <K>true</K>);
+#!     * <C>verbose</C>: a boolean describing whether to print extra information
+#!       to the screen (default <K>false</K>).
+#!
+#!   As output, this function returns a record containing some of the following
+#!   components, which describe the outcome of the request:
+#!     * <C>success</C>: a boolean describing whether the request was
+#!       successfully received by the server;
+#!     * <C>result</C>: body of the information sent by the server (only if
+#!       <C>success = true</C>);
+#!     * <C>error</C>: human-readable string saying what went wrong (only if
+#!       <C>success = false</C>).
+#!
+#!   Most of the standard HTTP request types should work, but currently only
+#!   body information is returned.  To see headers, consider using the
+#!   <C>verbose</C> option.  For convenience, dedicated functions exist for the
+#!   following request types:
+#!     * <Ref Func="DownloadURL"/> for GET requests;
+#!     * <Ref Func="PostToURL"/> for POST requests;
+#!     * <Ref Func="DeleteURL"/> for DELETE requests.
+#!
+#! @BeginExample
+#! gap> r := CurlRequest("https://www.google.com",
+#! >                     "HEAD",
+#! >                     "",
+#! >                     rec(verifyCert := false)); 
+#! rec( result := "", success := true )
+#! gap> r := CurlRequest("www.httpbin.org/post", "POST", "animal=tiger");;
+#! gap> r.success;
+#! true
+#! gap> r.result{[51..100]};
+#! "\"form\": {\n    \"animal\": \"tiger\"\n  }, \n  \"headers\":"
+#! @EndExample
 DeclareGlobalFunction( "CurlRequest" );
