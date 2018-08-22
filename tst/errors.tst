@@ -21,7 +21,7 @@ gap> PostToURL(42, "hello");
 Error, CurlRequest: <URL> must be a string
 
 # request type not a string
-gap> CurlRequest("www.google.com", 637, "hello", true);
+gap> CurlRequest("www.google.com", 637, "hello", rec(verifyCert := true));
 Error, CurlRequest: <type> must be a string
 
 # post_string not a string
@@ -29,11 +29,13 @@ gap> PostToURL("httpbin.org/post", 17);
 Error, CurlRequest: <out_string> must be a string
 
 # invalid verifyCert
-gap> DownloadURL("https://www.google.com", "maybe verify cert");
-Error, CurlRequest: <verifyCert> must be true or false
+gap> DownloadURL("https://www.google.com", rec(verifyCert := "maybe"));
+Error, CurlRequest: <opts>.verifyCert must be true or false
+
+# invalid opts
+gap> DownloadURL("https://www.google.com", "please verify the cert");
+Error, CurlRequest: <opts> must be a record
 
 # too many arguments
-gap> CurlRequest("www.google.com", "GET", "", true, 3, true);
+gap> CurlRequest("www.google.com", "GET", "", rec(verifyCert := true), 3, true);
 Error, CurlRequest: usage: requires 3 or 4 arguments, but 6 were given
-gap> DownloadURL("https://www.google.com", "maybe verify cert");
-Error, CurlRequest: <verifyCert> must be true or false

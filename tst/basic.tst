@@ -113,7 +113,7 @@ true
 gap> post_string := List("animal=tiger&material=cotton", letter -> letter);;
 gap> IsStringRep(post_string);
 false
-gap> r := PostToURL("httpbin.org/post", post_string, true);;
+gap> r := PostToURL("httpbin.org/post", post_string, rec(verifyCert := true));;
 gap> r.success;
 true
 gap> PositionSublist(r.result, "\"animal\": \"tiger\"") <> fail;
