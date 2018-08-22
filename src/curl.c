@@ -138,6 +138,7 @@ Obj FuncCURL_REQUEST(Obj self, Obj URL, Obj type, Obj out_string, Obj verifyCert
         SET_RNAM_PREC(prec, 2, RNamName("result"));
         SET_ELM_PREC(prec, 2, in_string);
     }
+    CHANGED_BAG(prec);
     return prec;
 }
 
