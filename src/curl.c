@@ -68,7 +68,10 @@ Obj FuncCURL_REQUEST(Obj self, Obj URL, Obj type, Obj out_string, Obj verifyCert
             curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
         }
         else if (strcmp(CHARS_STRING(type), "POST") == 0) { // send a string to the URL
+            len = GET_LEN_STRING(out_string); // no null character
             curl_easy_setopt(curl, CURLOPT_POST, 1L);
+            curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE_LARGE, len);
+            // using COPYPOSTFIELDS copies the data right now
             curl_easy_setopt(curl, CURLOPT_COPYPOSTFIELDS, CHARS_STRING(out_string));
         }
         else if (strcmp(CHARS_STRING(type), "HEAD") == 0) { // only get headers, without body
