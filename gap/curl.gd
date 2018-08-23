@@ -107,7 +107,7 @@ DeclareGlobalFunction( "DeleteURL" );
 #! @Returns
 #!   a record
 #! @Description
-#!   Send an HTTP request of type <A>type</A> to a URL on the internet.
+#!   Sends an HTTP request of type <A>type</A> to a URL on the internet.
 #!   <A>URL</A>, <A>type</A>, and <A>out_string</A> should all be strings:
 #!   <A>URL</A> is the URL of the server (which should start with "http://" or
 #!   "https://"), <A>type</A> is the type of HTTP request (e.g. "GET"), and
