@@ -24,13 +24,13 @@ Obj FuncCURL_REQUEST(Obj self,
                      Obj verifyCert,
                      Obj verbose)
 {
-    CURL *   curl;
-    CURLcode res;
-    Obj      in_string = MakeString("");
-    Obj      errorstring = 0;
-    UInt     len;
-    char     urlbuf[4096] = { 0 };
-    char *   typebuf = NULL;
+    CURL *     curl;
+    CURLcode   res;
+    Obj        in_string = MakeString("");
+    Obj        errorstring = 0;
+    curl_off_t len;
+    char       urlbuf[4096] = { 0 };
+    char *     typebuf = NULL;
 
     if (!IS_STRING_REP(URL)) {
         URL = CopyToStringRep(URL);
