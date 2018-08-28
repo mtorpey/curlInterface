@@ -32,9 +32,9 @@
 #!
 #! @Subsection Mac OS X
 #!
-#! curl is installed by default on Macs.
+#! curl is installed by default on Macs, but libcurl may be required.
 #! <List>
-#! <Item>Homebrew: <C>brew install TODO-I-DON'T-KNOW</C></Item>
+#! <Item>Homebrew: <C>brew install curl</C></Item>
 #! <Item>Fink: <C>fink install libcurl4</C></Item>
 #! <Item>MacPorts: <C>port install curl</C></Item>
 #! </List>
