@@ -72,11 +72,11 @@ Obj FuncCURL_REQUEST(Obj self,
         if (verbose == True)
             curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
 
-        if (strcmp(CHARS_STRING(type), "GET") == 0) {
+        if (strcmp((const char *) CHARS_STRING(type), "GET") == 0) {
             // simply download from the URL
             curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
         }
-        else if (strcmp(CHARS_STRING(type), "POST") == 0) {
+        else if (strcmp((const char *) CHARS_STRING(type), "POST") == 0) {
             // send a string to the URL
             len = GET_LEN_STRING(out_string); // no null character
             curl_easy_setopt(curl, CURLOPT_POST, 1L);
@@ -85,7 +85,7 @@ Obj FuncCURL_REQUEST(Obj self,
                              CHARS_STRING(out_string));
             // using COPYPOSTFIELDS copies the data right now
         }
-        else if (strcmp(CHARS_STRING(type), "HEAD") == 0) {
+        else if (strcmp((const char *) CHARS_STRING(type), "HEAD") == 0) {
             // only get headers, without body
             curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
         }
