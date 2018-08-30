@@ -7,9 +7,9 @@ gap> SortedList(RecNames(r));
 [ "result", "success" ]
 gap> r.success;
 true
-gap> IsMatchingSublist(r.result, "google");
-false
-gap> IsMatchingSublist("google", r.result);
+gap> PositionSublist(r.result, "google") <> fail;
+true
+gap> PositionSublist("google", r.result) <> fail;
 false
 
 # Sanity check the result without actually printing it
@@ -24,9 +24,9 @@ gap> SortedList(RecNames(r));
 [ "result", "success" ]
 gap> r.success;
 true
-gap> IsMatchingSublist(r.result, "google");
-false
-gap> IsMatchingSublist("google", r.result);
+gap> PositionSublist(r.result, "google") <> fail;
+true
+gap> PositionSublist("google", r.result) <> fail;
 false
 
 # Sanity check the result without actually printing it
