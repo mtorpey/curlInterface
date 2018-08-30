@@ -1,0 +1,27 @@
+This file describes changes in the curlInterface package.
+
+2.0.2 (??)
+  - First release as a deposited package
+  - Fix naive tests
+  - Clean up code
+
+2.0.1 (2018-08-28)
+  - Instructions for installation on Macs added
+  - Fix -Wpointer-sign compile warnings
+
+2.0.0 (2018-08-27)
+  - Functionality added for http POST and DELETE requests, using PostToURL and
+    DeleteURL
+  - CurlRequest function added to handle custom requests
+  - Documentation largely expanded, with examples
+  - verifyCert boolean replaced with options records
+  - verbose option added
+
+1.0.0 (2018-03-29)
+  - DownloadURL now accepts verifyCert, a boolean argument to disable
+    verification of HTTPS certificates
+  - Restructured C code
+  - Documentation changed to use Autodoc
+
+0.1 (2017-08-31)
+  - Initial release with DownloadURL function
