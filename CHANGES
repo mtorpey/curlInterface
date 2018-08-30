@@ -2,8 +2,9 @@ This file describes changes in the curlInterface package.
 
 2.0.2 (??)
   - First release as a deposited package
-  - Fix naive tests
+  - Fix naive and over-restrictive tests
   - Clean up code
+  - Add CHANGES
 
 2.0.1 (2018-08-28)
   - Instructions for installation on Macs added
