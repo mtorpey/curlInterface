@@ -50,8 +50,8 @@ gap> SortedList(RecNames(r));
 [ "error", "success" ]
 gap> r.success;
 false
-gap> r.error;
-"Could not resolve host: www.google.cheesebadger"
+gap> PositionSublist(r.error, "Could not resolve host") <> fail;
+true
 
 # Check successful POST requests
 gap> r := PostToURL("httpbin.org/post", "field1=true&field2=17");;
@@ -94,8 +94,8 @@ gap> SortedList(RecNames(r));
 [ "error", "success" ]
 gap> r.success;
 false
-gap> r.error;
-"Could not resolve host: www.google.cheesebadger"
+gap> PositionSublist(r.error, "Could not resolve host") <> fail;
+true
 
 # Check not IsStringRep (url)
 gap> url := List("https://www.google.com", letter -> letter);;
