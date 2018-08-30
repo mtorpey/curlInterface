@@ -6,7 +6,7 @@
 InstallGlobalFunction("CurlRequest",
 function(URL, type, out_string, opts...)
     local r, rnam;
-    
+
     # Get options
     r := rec(verifyCert := true, verbose := false);
     if Length(opts) = 1 then
@@ -20,7 +20,7 @@ function(URL, type, out_string, opts...)
         ErrorNoReturn("CurlRequest: usage: requires 3 or 4 arguments, but ",
                       Length(opts) + 3, " were given");
     fi;
-    
+
     # Check input
     if not IsString(URL) then
         ErrorNoReturn("CurlRequest: <URL> must be a string");
@@ -37,17 +37,17 @@ function(URL, type, out_string, opts...)
     return CURL_REQUEST(URL, type, out_string, r.verifyCert, r.verbose);
 end);
 
-InstallGlobalFunction( "DownloadURL",
+InstallGlobalFunction("DownloadURL",
 function(URL, opts...)
     return CallFuncList(CurlRequest, Concatenation([URL, "GET", ""], opts));
 end);
 
-InstallGlobalFunction( "PostToURL",
+InstallGlobalFunction("PostToURL",
 function(URL, str, opts...)
     return CallFuncList(CurlRequest, Concatenation([URL, "POST", str], opts));
 end);
 
-InstallGlobalFunction( "DeleteURL",
+InstallGlobalFunction("DeleteURL",
 function(URL, opts...)
     return CallFuncList(CurlRequest, Concatenation([URL, "DELETE", ""], opts));
 end);

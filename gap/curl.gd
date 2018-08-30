@@ -2,8 +2,8 @@
 # curlInterface: Simple Web Access
 #
 #! @Chapter Overview
-#! 
-#! CurlInterface allows a user to interact with http and https 
+#!
+#! CurlInterface allows a user to interact with http and https
 #! servers on the internet, using the `curl' library.
 #! Pages can be downloaded from a URL, and http POST requests
 #! can be sent to the URL for processing.
@@ -61,7 +61,7 @@
 #! gap> r.result{[1..50]};
 #! "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n\n<!DOCTYPE "
 #! @EndExample
-DeclareGlobalFunction( "DownloadURL" );
+DeclareGlobalFunction("DownloadURL");
 
 #! @Arguments URL, str[, opts]
 #! @Returns
@@ -81,7 +81,7 @@ DeclareGlobalFunction( "DownloadURL" );
 #! gap> r.result{[51..100]};
 #! "\"form\": {\n    \"animal\": \"tiger\"\n  }, \n  \"headers\":"
 #! @EndExample
-DeclareGlobalFunction( "PostToURL" );
+DeclareGlobalFunction("PostToURL");
 
 #! @Arguments URL[, opts]
 #! @Returns
@@ -98,10 +98,10 @@ DeclareGlobalFunction( "PostToURL" );
 #! gap> r := DeleteURL("www.google.com");;
 #! gap> r.success;
 #! true
-#! gap> r.result{[1471..1540]};           
+#! gap> r.result{[1471..1540]};
 #! "<p>The request method <code>DELETE</code> is inappropriate for the URL"
 #! @EndExample
-DeclareGlobalFunction( "DeleteURL" );
+DeclareGlobalFunction("DeleteURL");
 
 #! @Arguments URL, type, out_string[, opts]
 #! @Returns
@@ -143,7 +143,7 @@ DeclareGlobalFunction( "DeleteURL" );
 #! gap> r := CurlRequest("https://www.google.com",
 #! >                     "HEAD",
 #! >                     "",
-#! >                     rec(verifyCert := false)); 
+#! >                     rec(verifyCert := false));
 #! rec( result := "", success := true )
 #! gap> r := CurlRequest("www.httpbin.org/post", "POST", "animal=tiger");;
 #! gap> r.success;
@@ -151,4 +151,4 @@ DeclareGlobalFunction( "DeleteURL" );
 #! gap> r.result{[51..100]};
 #! "\"form\": {\n    \"animal\": \"tiger\"\n  }, \n  \"headers\":"
 #! @EndExample
-DeclareGlobalFunction( "CurlRequest" );
+DeclareGlobalFunction("CurlRequest");
