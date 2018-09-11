@@ -36,13 +36,13 @@ gap> r.result[1];
 '<'
 
 # Check FTP
-gap> r := DownloadURL("ftp://fra36-speedtest-1.tele2.net/1KB.zip");;
-gap> SortedList(RecNames(r));
-[ "result", "success" ]
-gap> r.success;
-true
-gap> r.result = ListWithIdenticalEntries(1024, '\000');
-true
+#gap> r := DownloadURL("ftp://fra36-speedtest-1.tele2.net/1KB.zip");;
+#gap> SortedList(RecNames(r));
+#[ "result", "success" ]
+#gap> r.success;
+#true
+#gap> r.result = ListWithIdenticalEntries(1024, '\000');
+#true
 
 # Check bad URL
 gap> r := DownloadURL("https://www.google.cheesebadger");;
