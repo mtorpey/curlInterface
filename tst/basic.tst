@@ -36,7 +36,7 @@ gap> r.result[1];
 '<'
 
 # Check FTP
-gap> r := DownloadURL("ftp://fra36-speedtest-1.tele2.net/1KB.zip",
+gap> r := DownloadURL("ftp://ftp.gap-system.org/pub/gap/README.txt",
 >                     rec(verbose := true));;
 gap> SortedList(RecNames(r));
 [ "result", "success" ]
