@@ -36,13 +36,14 @@ gap> r.result[1];
 '<'
 
 # Check FTP
-#gap> r := DownloadURL("ftp://fra36-speedtest-1.tele2.net/1KB.zip");;
-#gap> SortedList(RecNames(r));
-#[ "result", "success" ]
-#gap> r.success;
-#true
-#gap> r.result = ListWithIdenticalEntries(1024, '\000');
-#true
+gap> r := DownloadURL("ftp://fra36-speedtest-1.tele2.net/1KB.zip",
+>                     rec(verbose := true));;
+gap> SortedList(RecNames(r));
+[ "result", "success" ]
+gap> r.success;
+true
+gap> r.result = ListWithIdenticalEntries(1024, '\000');
+true
 
 # Check bad URL
 gap> r := DownloadURL("https://www.google.cheesebadger");;
@@ -156,10 +157,10 @@ gap> PositionSublist(r.result, "405") <> fail;
 false
 
 # Check verbose requests don't break anything (we can't catch the output here)
-gap> r := DownloadURL("http://www.httpbin.org/get", rec(verbose := true));;
-gap> r.success;
-true
-gap> PositionSublist(r.result, "httpbin") <> fail;
-true
-gap> PositionSublist(r.result, "404") <> fail;
-false
+#gap> r := DownloadURL("http://www.httpbin.org/get", rec(verbose := true));;
+#gap> r.success;
+#true
+#gap> PositionSublist(r.result, "httpbin") <> fail;
+#true
+#gap> PositionSublist(r.result, "404") <> fail;
+#false
